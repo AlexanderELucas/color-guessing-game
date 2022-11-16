@@ -29,7 +29,15 @@ export default function App() {
 
 
   function handleButton(event) {
-    console.log(event.target)
+    //checks if user's answer was true or false 
+    setAnswer ( event.target.name === `${colorData.correctColor}` ? true : false)
+    
+    //Create response message based on answer given
+    setMessage (
+      answer? `${event.target.name} was Correct!` : `${event.target.name} was Incorrect!`
+    )
+
+    //change color hex code options for next play
     setColorData(
       {
         correctColor: generateColor(),
@@ -37,19 +45,7 @@ export default function App() {
         wrongColorTwo: generateColor()
       }
     )
-    
-    setAnswer ( event.target.name === `${colorData.correctColor}` ? true : false)
-
-    setMessage (
-      answer? `${event.target.name} was Correct!` : `${event.target.name} was Incorrect!`
-    )
   }
-  
-  function randomOrder() {
-    console.log(Math.floor(Math.random()*9))
-    return Math.floor(Math.random()*9)
-  }
-
 
   //First Setup of color selection
   React.useEffect(() => {
@@ -62,9 +58,13 @@ export default function App() {
       }
     )}, []
   )
+
+
+  //Page display to render
   return (
     <div className="app">
       <h1>GUESS THE HEX CODE</h1>
+      
       <Box
         color = {colorData.correctColor}
       />
@@ -87,6 +87,7 @@ export default function App() {
           handleButton = {handleButton}
         />
       </div>
+      
       <h1>{message}</h1>
     </div>
   );
