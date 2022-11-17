@@ -21,13 +21,6 @@ export default function App() {
     return newColor;
   }
 
-  
-  // Color changes when button is pressed 
-  // make 3 buttons with random order 
-  // make color random call when UI loaded {useEffect}.
-  // display correct/incorrect message
-
-
   function handleButton(event) {
     //checks if user's answer was true or false 
     setAnswer ( event.target.name === `${colorData.correctColor}` ? true : false)
@@ -49,15 +42,14 @@ export default function App() {
 
   //First Setup of color selection
   React.useEffect(() => {
-    
     setColorData(
       {
         correctColor: generateColor(),
         wrongColorOne: generateColor(),
         wrongColorTwo: generateColor()
       }
-    )}, []
-  )
+    )
+  }, [])
 
 
   //Page display to render
@@ -75,7 +67,6 @@ export default function App() {
           color = {colorData.correctColor}
           handleButton = {handleButton}
         />
-        
         <Button
           name = {colorData.wrongColorOne}
           color = {colorData.wrongColorOne}
